@@ -43,14 +43,10 @@ const bootstrapdir = join(__dirname, "packages/bootstrap");
 const sjpackagemeta = JSON.parse(
 	await readFile(join(scramjetdir, "package.json"), "utf-8")
 );
-let wasmB64 = "undefined";
-
-try {
-	const wasmBuf = await readFile(wasmPath);
-	wasmB64 = wasmBuf.toString("base64");
-} catch {
-	console.warn("WASM not built yet — continuing without embed");
-}
+const wasmPath = join(scramjetdir, "dist/scramjet.wasm");
+let wasmB64: string;
+const wasmBuf = await readFile(wasmPath);
+wasmB64 = wasmBuf.toString("base64");
 
 export const tsloader = {
 	test: /\.ts$/,
