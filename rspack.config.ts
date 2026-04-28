@@ -43,10 +43,18 @@ const bootstrapdir = join(__dirname, "packages/bootstrap");
 const sjpackagemeta = JSON.parse(
 	await readFile(join(scramjetdir, "package.json"), "utf-8")
 );
+let wasmB64 = "undefined";
+
 const wasmPath = join(scramjetdir, "dist/scramjet.wasm");
-let wasmB64: string;
-const wasmBuf = await readFile(wasmPath);
-wasmB64 = wasmBuf.toString("base64");
+
+try {
+	const wasmBuf = await readFile(wasmPath);
+	wasmB64 = wasmBuf.toString("base64");
+} catch (err) {
+	throw new Error(
+		"scramjet.wasm is missing. You must build packages/core before rspack runs."
+	);
+}
 
 export const tsloader = {
 	test: /\.ts$/,
