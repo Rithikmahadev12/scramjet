@@ -30,7 +30,9 @@
 		"ts-checker-rspack-plugin": "^1.1.6",
 		"tsc-alias": "^1.8.16",
 		"vite": "^7.3.0",
-		"tsx": "^4.0.0"
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3",
+		"ts-node": "^10.9.2"
 	},
 	"dependencies": {
 		"prettier": "^3.6.2"
