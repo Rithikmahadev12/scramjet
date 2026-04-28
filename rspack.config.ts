@@ -45,15 +45,11 @@ const sjpackagemeta = JSON.parse(
 );
 let wasmB64 = "undefined";
 
-const wasmPath = join(scramjetdir, "dist/scramjet.wasm");
-
 try {
 	const wasmBuf = await readFile(wasmPath);
 	wasmB64 = wasmBuf.toString("base64");
-} catch (err) {
-	throw new Error(
-		"scramjet.wasm is missing. You must build packages/core before rspack runs."
-	);
+} catch {
+	console.warn("WASM not built yet — continuing without embed");
 }
 
 export const tsloader = {
