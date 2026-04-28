@@ -8,7 +8,7 @@
 	"license": "AGPL-3.0-only",
 	"packageManager": "pnpm@10.12.1",
 	"scripts": {
-		"dev": "tsx devserver.ts",
+		"dev": "node --no-warnings=ExperimentalWarning devserver.ts",
 		"preinstall": "npx only-allow pnpm"
 	},
 	"pnpm": {
@@ -29,10 +29,7 @@
 		"eslint": "^10.2.0",
 		"ts-checker-rspack-plugin": "^1.1.6",
 		"tsc-alias": "^1.8.16",
-		"vite": "^7.3.0",
-		"tsx": "^4.21.0",
-		"typescript": "^5.9.3",
-		"ts-node": "^10.9.2"
+		"vite": "^7.3.0"
 	},
 	"dependencies": {
 		"prettier": "^3.6.2"
