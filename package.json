@@ -8,7 +8,7 @@
 	"license": "AGPL-3.0-only",
 	"packageManager": "pnpm@10.12.1",
 	"scripts": {
-		"dev": "node --no-warnings=ExperimentalWarning devserver.ts",
+		"dev": "tsx devserver.ts"
 		"preinstall": "npx only-allow pnpm"
 	},
 	"pnpm": {
