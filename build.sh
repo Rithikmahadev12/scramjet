@@ -18,5 +18,5 @@ export PATH="$PWD/binaryen-${BINARYEN_VERSION}/bin:$PATH"
 
 # Build
 pnpm i
-pnpm rewriter:build
+pnpm --filter @mercuryworkshop/scramjet run rewriter:build
 pnpm build
