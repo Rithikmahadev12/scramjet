@@ -6,7 +6,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
 # Install wasm-bindgen
-cargo install wasm-bindgen-cli
+cargo install wasm-bindgen-cli --version 0.2.105 --force
 
 # Install wasm-snip fork
 cargo install --git https://github.com/r58Playz/wasm-snip
