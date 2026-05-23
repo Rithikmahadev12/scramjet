@@ -11,10 +11,12 @@ cargo install wasm-bindgen-cli
 # Install wasm-snip fork
 cargo install --git https://github.com/r58Playz/wasm-snip
 
-# Install wasm-opt (Binaryen)
-apt-get install -y binaryen
+# Install wasm-opt (no root needed)
+BINARYEN_VERSION=version_123
+curl -L https://github.com/WebAssembly/binaryen/releases/download/${BINARYEN_VERSION}/binaryen-${BINARYEN_VERSION}-x86_64-linux.tar.gz | tar xz
+export PATH="$PWD/binaryen-${BINARYEN_VERSION}/bin:$PATH"
 
-# Now follow the docs exactly
+# Build
 pnpm i
 pnpm rewriter:build
 pnpm build
