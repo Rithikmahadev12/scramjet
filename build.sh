@@ -5,7 +5,11 @@ set -e
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source "$HOME/.cargo/env"
 
-# Install wasm-bindgen
+# Install nightly + rust-src (required by rewriter)
+rustup toolchain install nightly
+rustup component add rust-src --toolchain nightly
+
+# Install wasm-bindgen (pinned version)
 cargo install wasm-bindgen-cli --version 0.2.105 --force
 
 # Install wasm-snip fork
