@@ -1,26 +1,42 @@
-import chalk from "chalk";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
 import { downloadTemplate } from "giget";
-import sortPackageJson from "sort-package-json";
-import path from "path";
-import { fileURLToPath } from "url";
 
 interface options {
 	projectName: string;
 	scaffoldType: string;
 }
 
+const packageRoot = path.join(
+	path.dirname(fileURLToPath(import.meta.url)),
+	".."
+);
+
+function localTemplateDir(template: string) {
+	return path.join(packageRoot, "templates", template);
+}
+
+async function copyLocalTemplate(template: string, projectName: string) {
+	const source = localTemplateDir(template);
+	await fs.copy(source, projectName);
+}
+
 async function template(template: string, projectName: string) {
 	try {
-		await downloadTemplate(
-			`github:MercuryWorkshop/scramjet/packages/create-proxy-app/templates/${template}`,
-			{
-				force: false,
-				provider: "github",
-				cwd: projectName,
-				dir: ".",
-			}
-		);
+		if (await fs.pathExists(localTemplateDir(template))) {
+			await copyLocalTemplate(template, projectName);
+		} else {
+			await downloadTemplate(
+				`github:MercuryWorkshop/scramjet/packages/create-proxy-app/templates/${template}`,
+				{
+					force: false,
+					provider: "github",
+					cwd: projectName,
+					dir: ".",
+				}
+			);
+		}
 	} catch (err: any) {
 		//remove the dir if it's likely to be created by the CLI
 		if (
